@@ -20,26 +20,32 @@ export class CategoryController {
 
         this.categoryService
             .create(dto!)
-            .then((result) => res.status(201).json(result))
+            .then((category) => res.status(201).json({ category }))
             .catch((err) => this.handleError(res, err));
     };
 
     public getCategories = async (_req: Request, res: Response) => {
         this.categoryService
             .getAll()
-            .then((result) => res.status(200).json(result))
+            .then((categories) => res.status(200).json({ categories }))
             .catch((err) => this.handleError(res, err));
     };
 
     public updateCategory = async (req: Request, res: Response) => {
         const id = +req.params.id;
 
+        if (isNaN(id)) {
+            return res.status(400).json({
+                error: 'El id debe ser numérico',
+            });
+        }
+
         const [error, dto] = UpdateCategoryDto.create({ ...req.body, id });
         if (error) return res.status(400).json({ error });
 
         this.categoryService
             .updateById(dto!)
-            .then((result) => res.status(200).json(result))
+            .then((category) => res.status(200).json({ category }))
             .catch((err) => this.handleError(res, err));
     };
 
@@ -48,13 +54,13 @@ export class CategoryController {
 
         if (isNaN(id)) {
             return res.status(400).json({
-                error: 'El id debe ser numerico',
+                error: 'El id debe ser numérico',
             });
         }
 
         this.categoryService
             .deleteById(id)
-            .then((result) => res.status(200).json(result))
+            .then((category) => res.status(200).json({ category }))
             .catch((err) => this.handleError(res, err));
     };
 }
