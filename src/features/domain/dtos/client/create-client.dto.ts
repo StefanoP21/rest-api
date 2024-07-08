@@ -2,7 +2,7 @@ export class CreateClientDto {
     private constructor(
         public readonly name: string,
         public readonly email: string,
-        public readonly phone: string,
+        public readonly phone: number,
         public readonly address: string
     ) {}
 
@@ -13,6 +13,7 @@ export class CreateClientDto {
         if (!email || email.length === 0)
             return ['El correo electrónico es obligatorio'];
         if (!phone) return ['El número de teléfono es obligatorio'];
+        if (typeof phone !== 'number') return ['El precio debe ser numérico'];
         if (!address || address.length === 0)
             return ['La dirección de envío es obligatoria'];
 

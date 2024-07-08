@@ -17,6 +17,9 @@ export class UpdateProductDto {
     static create(object: Record<string, any>): [string?, UpdateProductDto?] {
         const { id, price, stock } = object;
 
+        if (typeof price !== 'number') return ['El precio debe ser numérico'];
+        if (typeof stock !== 'number') return ['El stock debe ser numérico'];
+
         return [undefined, new UpdateProductDto(id, price, stock)];
     }
 }

@@ -14,8 +14,10 @@ export class CreateProductDto {
         if (!description || description.length === 0)
             return ['La descripción es obligatoria'];
         if (!price || price.length === 0) return ['El precio es obligatorio'];
+        if (typeof price !== 'number') return ['El precio debe ser numérico'];
         if (!stock || stock.length === 0)
             return ['El stock del producto es obligatorio'];
+        if (typeof stock !== 'number') return ['El stock debe ser numérico'];
         if (!categoryId || categoryId.length === 0)
             return ['El código de categoría es obligatorio'];
 
