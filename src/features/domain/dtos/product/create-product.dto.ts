@@ -20,6 +20,8 @@ export class CreateProductDto {
         if (typeof stock !== 'number') return ['El stock debe ser numérico'];
         if (!categoryId || categoryId.length === 0)
             return ['El código de categoría es obligatorio'];
+        if (typeof categoryId !== 'number')
+            return ['El código de categoría debe ser numérico'];
 
         return [
             undefined,
