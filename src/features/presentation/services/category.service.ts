@@ -5,7 +5,7 @@ import { CreateCategoryDto, UpdateCategoryDto } from '../../domain';
 export class CategoryService {
     constructor() {}
 
-    async createCategory(dto: CreateCategoryDto) {
+    async create(dto: CreateCategoryDto) {
         const categoryExist = await prisma.category.findFirst({
             where: { name: dto.name },
         });
@@ -22,7 +22,7 @@ export class CategoryService {
         }
     }
 
-    async getCategories() {
+    async getAll() {
         const categories = await prisma.category.findMany();
 
         if (categories.length === 0)
@@ -31,7 +31,7 @@ export class CategoryService {
         return categories;
     }
 
-    async getCategoryById(id: number) {
+    private async findById(id: number) {
         const category = await prisma.category.findFirst({ where: { id } });
 
         if (!category) throw CustomError.badRequest('Categoria no encontrada');
@@ -39,8 +39,8 @@ export class CategoryService {
         return category;
     }
 
-    async updateCategoryById(dto: UpdateCategoryDto) {
-        await this.getCategoryById(dto.id);
+    async updateById(dto: UpdateCategoryDto) {
+        await this.findById(dto.id);
 
         try {
             const updatedCategory = await prisma.category.update({
@@ -54,8 +54,8 @@ export class CategoryService {
         }
     }
 
-    async deleteCategoryById(id: number) {
-        await this.getCategoryById(id);
+    async deleteById(id: number) {
+        await this.findById(id);
 
         try {
             const deletedCategory = await prisma.category.delete({

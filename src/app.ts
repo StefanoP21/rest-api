@@ -1,4 +1,4 @@
-import { envs } from './core';
+import { envs } from './core/envs';
 import { AppRoutes } from './routes';
 import { Server } from './server';
 
