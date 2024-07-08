@@ -2,8 +2,8 @@ export class CreateClientDto {
     private constructor(
         public readonly name: string,
         public readonly email: string,
-        public readonly phone: number,
-        public readonly addres: string
+        public readonly phone: string,
+        public readonly address: string
     ) {}
 
     static create(object: Record<string, any>): [string?, CreateClientDto?] {
