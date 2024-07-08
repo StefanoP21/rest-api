@@ -1,10 +1,12 @@
+import { $Enums } from '@prisma/client';
+
 export class CreateOrderDto {
     private constructor(
         public readonly amount: number,
         public readonly total: number,
         public readonly clientId: number,
         public readonly productId: number,
-        public readonly status?: string
+        public readonly status: $Enums.StatusLevel
     ) {}
 
     static create(object: Record<string, any>): [string?, CreateOrderDto?] {
@@ -25,10 +27,12 @@ export class CreateOrderDto {
             return ['El código del producto es obligatorio'];
         if (typeof productId !== 'number')
             return ['El código del producto debe ser numérico'];
+        if (!status || status.length === 0)
+            return ['El estado de la orden es obligatoria'];
         if (
-            status !== 'PENDIENTE' ||
-            status !== 'ENVIADO' ||
-            status !== 'ENTREGADO'
+            status !== $Enums.StatusLevel.PENDIENTE &&
+            status !== $Enums.StatusLevel.ENVIADO &&
+            status !== $Enums.StatusLevel.ENTREGADO
         ) {
             return [
                 'El estado de una orden solo puede ser PENDIENTE, ENVIADO o ENTREGADO',

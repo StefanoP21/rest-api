@@ -17,7 +17,7 @@ export class ProductService {
 
             return newProduct;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 
@@ -40,7 +40,7 @@ export class ProductService {
 
             return updatedProduct;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 
@@ -54,7 +54,7 @@ export class ProductService {
 
             return deletedProduct;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 }

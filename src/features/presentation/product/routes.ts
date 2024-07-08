@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import { ProductService } from '../services/product.service';
 import { ProductController } from './controller';
 

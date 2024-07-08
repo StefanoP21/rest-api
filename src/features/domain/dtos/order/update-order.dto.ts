@@ -1,3 +1,5 @@
+import { $Enums } from '@prisma/client';
+
 export class UpdateOrderDto {
     private constructor(
         public readonly id: number,
@@ -13,18 +15,18 @@ export class UpdateOrderDto {
     }
 
     static create(object: Record<string, any>): [string?, UpdateOrderDto?] {
-        const { status } = object;
+        const { id, status } = object;
 
         if (
-            status !== 'PENDIENTE' ||
-            status !== 'ENVIADO' ||
-            status !== 'ENTREGADO'
+            status !== $Enums.StatusLevel.PENDIENTE &&
+            status !== $Enums.StatusLevel.ENVIADO &&
+            status !== $Enums.StatusLevel.ENTREGADO
         ) {
             return [
                 'El estado de una orden solo puede ser PENDIENTE, ENVIADO o ENTREGADO',
             ];
         }
 
-        return [undefined, new UpdateOrderDto(status)];
+        return [undefined, new UpdateOrderDto(id, status)];
     }
 }

@@ -1,10 +1,10 @@
 import { type Request, type Response } from 'express';
 import { CustomError } from '../../../core/custom.error';
-import { ProductService } from '../services/product.service';
-import { CreateProductDto, UpdateProductDto } from '../../domain';
+import { OrderService } from '../services/order.service';
+import { CreateOrderDto, UpdateOrderDto } from '../../domain';
 
-export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+export class OrderController {
+    constructor(private readonly orderService: OrderService) {}
 
     private handleError = (res: Response, error: unknown) => {
         if (error instanceof CustomError) {
@@ -14,17 +14,17 @@ export class ProductController {
         return res.status(500).json({ error: 'Hable con el administrador' });
     };
 
-    public createProduct = async (req: Request, res: Response) => {
-        const [error, dto] = CreateProductDto.create(req.body);
+    public createOrder = async (req: Request, res: Response) => {
+        const [error, dto] = CreateOrderDto.create(req.body);
         if (error) return res.status(400).json({ error });
 
-        this.productService
+        this.orderService
             .create(dto!)
-            .then((product) => res.status(201).json({ product }))
+            .then((order) => res.status(201).json({ order }))
             .catch((err) => this.handleError(res, err));
     };
 
-    public getProduct = async (req: Request, res: Response) => {
+    public getOrder = async (req: Request, res: Response) => {
         const id = +req.params.id;
 
         if (isNaN(id)) {
@@ -33,13 +33,13 @@ export class ProductController {
             });
         }
 
-        this.productService
+        this.orderService
             .findById(id)
-            .then((product) => res.status(200).json({ product }))
+            .then((order) => res.status(200).json({ order }))
             .catch((err) => this.handleError(res, err));
     };
 
-    public updateProduct = async (req: Request, res: Response) => {
+    public updateOrder = async (req: Request, res: Response) => {
         const id = +req.params.id;
 
         if (isNaN(id)) {
@@ -48,16 +48,16 @@ export class ProductController {
             });
         }
 
-        const [error, dto] = UpdateProductDto.create({ ...req.body, id });
+        const [error, dto] = UpdateOrderDto.create({ ...req.body, id });
         if (error) return res.status(400).json({ error });
 
-        this.productService
+        this.orderService
             .updateById(dto!)
-            .then((product) => res.status(200).json({ product }))
+            .then((order) => res.status(200).json({ order }))
             .catch((err) => this.handleError(res, err));
     };
 
-    public deleteProduct = async (req: Request, res: Response) => {
+    public deleteOrder = async (req: Request, res: Response) => {
         const id = +req.params.id;
 
         if (isNaN(id)) {
@@ -66,9 +66,9 @@ export class ProductController {
             });
         }
 
-        this.productService
+        this.orderService
             .deleteById(id)
-            .then((product) => res.status(200).json({ product }))
+            .then((order) => res.status(200).json({ order }))
             .catch((err) => this.handleError(res, err));
     };
 }

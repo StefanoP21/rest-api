@@ -18,7 +18,7 @@ export class CategoryService {
 
             return newCategory;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 
@@ -50,7 +50,7 @@ export class CategoryService {
 
             return updatedCategory;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 
@@ -64,7 +64,7 @@ export class CategoryService {
 
             return deletedCategory;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 }

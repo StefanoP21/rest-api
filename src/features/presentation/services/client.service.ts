@@ -18,8 +18,7 @@ export class ClienteService {
 
             return newClient;
         } catch (error) {
-            console.log(error);
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 
@@ -42,8 +41,7 @@ export class ClienteService {
 
             return updatedClient;
         } catch (error) {
-            console.log(error);
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 
@@ -57,7 +55,7 @@ export class ClienteService {
 
             return deletedClient;
         } catch (error) {
-            throw CustomError.internalServerError('Hable con el administador');
+            throw CustomError.internalServerError('Hable con el administrador');
         }
     }
 }
