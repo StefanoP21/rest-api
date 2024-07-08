@@ -14,9 +14,9 @@ datasource db {
 }
 
 enum StatusLevel {
-  PENDING
-  SHIPPED
-  DELIVERED
+  PENDIENTE
+  ENVIADO
+  ENTREGADO
 }
 
 model Product {
@@ -43,7 +43,7 @@ model Order {
   id        Int         @id @default(autoincrement())
   amount    Int
   total     Decimal
-  status    StatusLevel @default(PENDING)
+  status    StatusLevel @default(PENDIENTE)
   client    Client      @relation(fields: [clientId], references: [id])
   clientId  Int
   product   Product     @relation(fields: [productId], references: [id])

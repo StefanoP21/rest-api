@@ -5,6 +5,15 @@ export class UpdateClientDto {
         public readonly addres?: string
     ) {}
 
+    get values() {
+        const returnObject: Record<string, any> = {};
+
+        if (this.phone) returnObject.phone = this.phone;
+        if (this.addres) returnObject.addres = this.addres;
+
+        return returnObject;
+    }
+
     static create(object: Record<string, any>): [string?, UpdateClientDto?] {
         const { id, phone, address } = object;
 
