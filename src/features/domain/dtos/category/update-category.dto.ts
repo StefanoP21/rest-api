@@ -5,6 +5,15 @@ export class UpdateCategoryDto {
         public readonly description?: string
     ) {}
 
+    get values() {
+        const returnObject: Record<string, any> = {};
+
+        if (this.name) returnObject.name = this.name;
+        if (this.description) returnObject.description = this.description;
+
+        return returnObject;
+    }
+
     static create(object: Record<string, any>): [string?, UpdateCategoryDto?] {
         const { id, name, description } = object;
 

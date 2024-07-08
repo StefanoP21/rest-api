@@ -21,7 +21,7 @@ enum StatusLevel {
 
 model Product {
   id          Int      @id @default(autoincrement())
-  name        String   @db.VarChar(255)
+  name        String   @unique @db.VarChar(255)
   description String   @db.VarChar(255)
   price       Decimal
   stock       Int
@@ -33,7 +33,7 @@ model Product {
 model Client {
   id      Int     @id @default(autoincrement())
   name    String  @db.VarChar(255)
-  email   String  @db.VarChar(255)
+  email   String  @unique @db.VarChar(255)
   phone   Int
   address String  @db.VarChar(255)
   Order   Order[]
@@ -52,7 +52,7 @@ model Order {
 
 model Category {
   id          Int       @id @default(autoincrement())
-  name        String    @db.VarChar(255)
+  name        String    @unique @db.VarChar(255)
   description String    @db.VarChar(255)
   Product     Product[]
 }
