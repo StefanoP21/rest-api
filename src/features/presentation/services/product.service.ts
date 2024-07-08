@@ -24,7 +24,7 @@ export class ProductService {
     async findById(id: number) {
         const product = await prisma.product.findFirst({ where: { id } });
 
-        if (!product) throw CustomError.badRequest('Producto no encontrada');
+        if (!product) throw CustomError.badRequest('Producto no encontrado');
 
         return product;
     }

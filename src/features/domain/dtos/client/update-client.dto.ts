@@ -17,7 +17,8 @@ export class UpdateClientDto {
     static create(object: Record<string, any>): [string?, UpdateClientDto?] {
         const { id, phone, address } = object;
 
-        if (typeof phone !== 'number') return ['El precio debe ser numérico'];
+        if (typeof phone !== 'number')
+            return ['El  número de teléfono debe ser numérico'];
 
         return [undefined, new UpdateClientDto(id, phone, address)];
     }

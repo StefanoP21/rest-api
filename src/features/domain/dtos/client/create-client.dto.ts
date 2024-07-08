@@ -13,7 +13,8 @@ export class CreateClientDto {
         if (!email || email.length === 0)
             return ['El correo electrónico es obligatorio'];
         if (!phone) return ['El número de teléfono es obligatorio'];
-        if (typeof phone !== 'number') return ['El precio debe ser numérico'];
+        if (typeof phone !== 'number')
+            return ['El  número de teléfono debe ser numérico'];
         if (!address || address.length === 0)
             return ['La dirección de envío es obligatoria'];
 
