@@ -1,5 +1,5 @@
 import { CustomError } from '../../../core/custom.error';
-import { prisma } from '../../../data/postgresql';
+import { prisma } from '../../../data/mysql';
 import { CreateProductDto, UpdateProductDto } from '../../domain';
 
 export class ProductService {
